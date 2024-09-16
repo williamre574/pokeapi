@@ -1,11 +1,14 @@
 # PokeAPI
 
-###This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0
-###Version NODE: 16.16.0
+### This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0
+
+Version NODE: 16.16.0
 
 ## Pasos para compilar
-###Ejecutar: npm install
-###Correr aplicacion: npm start
+
+Ejecutar: `npm install`
+
+Correr aplicación: `npm start`
 
 
 ## Development server
