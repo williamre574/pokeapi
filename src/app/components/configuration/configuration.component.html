@@ -1,0 +1,91 @@
+<input type="file" (change)="readURL($event)" #file hidden />
+<h1 class="title">
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M17.835 3.8701L16.055 2.1001L6.16504 12.0001L16.065 21.9001L17.835 20.1301L9.70504 12.0001L17.835 3.8701Z"
+      fill="#01426A"
+    />
+  </svg>
+  <span>¡Hola!</span> Configuremos tu perfil
+</h1>
+<p class="title">Queremos conocerte mejor.</p>
+<div class="container">
+  <section class="photo-section">
+    <p class="photo-title">Imagén de perfil</p>
+    <div class="photo-profile">
+      <img
+        [src]="imageSrc || '../../../assets/images/icon_user.png'"
+        alt="User photo"
+      />
+    </div>
+    <img
+      src="../../../assets/images/btn_add_photo.png"
+      alt=""
+      class="btn_add_photo"
+      (click)="file.click()"
+    />
+  </section>
+  <section class="form-section">
+    <p class="title-form">Tu información</p>
+    <p class="paragraph">
+      Completa la siguiente información para completar tu perfil
+    </p>
+    <form class="example-form" [formGroup]="form">
+      <mat-form-field appearance="outline" fxFlex="40">
+        <mat-label>Nombre</mat-label>
+        <input matInput placeholder="" formControlName="name" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Pasatiempo favorito</mat-label>
+        <input
+          matInput
+          placeholder=""
+          formControlName="hobbie"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let option of filteredOptions | async"
+            [value]="option"
+            >{{ option }}</mat-option
+          >
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Cumpleaños</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          (dateChange)="onDateChange($event)"
+          formControlName="birthday"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>{{ documentLabel }}</mat-label>
+        <input
+          matInput
+          placeholder=""
+          formControlName="document"
+          [textMask]="{ mask: mask }"
+          [pattern]="regexRut"
+        />
+      </mat-form-field>
+      <button
+        mat-stroked-button
+        [disabled]="this.form.invalid"
+        [ngClass]="{ disabled: !this.form.valid, enabled: this.form.valid }"
+        (click)="continue()"
+      >
+        {{ isEdit ? "Actualizar" : "Continuar" }}
+      </button>
+    </form>
+  </section>
+</div>

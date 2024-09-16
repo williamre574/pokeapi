@@ -1,0 +1,133 @@
+<div class="container">
+    <section class="profile">
+      <div class="section-header">
+        <h1 class="title">
+          <span>¡Hola {{ profile.name }}!</span>
+        </h1>
+        <button (click)="edit('profile')">Editar perfil</button>
+      </div>
+  
+      <div class="profile-card">
+        <div class="profile-card-header">
+          <p>Entrenador</p>
+          <img src="../../../assets/images/medal.png" alt="" />
+        </div>
+        <div class="profile-photo">
+          <img
+            [src]="profile['image'] || '../../../assets/images/icon_user.png'"
+            alt=""
+          />
+        </div>
+  
+        <div class="personal-data">
+          <table>
+            <tr>
+              <td>Pasatiempo:</td>
+              <td>{{ profile["hobbie"] }}</td>
+            </tr>
+            <tr>
+              <td>Edad:</td>
+              <td>{{ ageCalculated }}</td>
+            </tr>
+            <tr *ngIf="profile['document'] != ''">
+              <td>{{ ageCalculated! < 18 ? "Carnet de minoridad" : "DUI" }}</td>
+              <td>{{ profile["document"] }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+  
+    <section class="pokemons">
+      <div class="section-header">
+        <p class="title-pokemons">Mis Pokémon</p>
+        <button (click)="edit('selection')">Editar</button>
+      </div>
+      <div class="pokemon-container">
+        <swiper-container
+          class="mySwiper"
+          direction="vertical"
+          pagination="true"
+          pagination-clickable="true"
+          slides-per-view="1"
+        >
+          <!-- Additional required wrapper -->
+  
+          <!-- Slides -->
+          <swiper-slide
+            class="swiper-slide pokemon-card"
+            *ngFor="let p of myPokemons"
+          >
+            <div class="pokemon-image">
+              <img [src]="p.image" alt="" />
+              <h1>{{ p.name | titlecase }}</h1>
+              <p>
+                {{ p.types[0].type.name | titlecase }}
+              </p>
+            </div>
+            <div class="pokemon-stats">
+              <table>
+                <tr>
+                  <td>HP</td>
+                  <td>
+                    <mat-progress-bar
+                      mode="determinate"
+                      [value]="(p.stats[0].base_stat * 100) / 255"
+                    ></mat-progress-bar>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Ataque</td>
+                  <td>
+                    <mat-progress-bar
+                      mode="determinate"
+                      [value]="(p.stats[1].base_stat * 100) / 190"
+                    ></mat-progress-bar>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Defensa</td>
+                  <td>
+                    <mat-progress-bar
+                      mode="determinate"
+                      [value]="(p.stats[2].base_stat * 100) / 230"
+                    ></mat-progress-bar>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Ataque Especial</td>
+                  <td>
+                    <mat-progress-bar
+                      mode="determinate"
+                      [value]="(p.stats[3].base_stat * 100) / 194"
+                    ></mat-progress-bar>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Defensa Especial</td>
+                  <td>
+                    <mat-progress-bar
+                      mode="determinate"
+                      [value]="(p.stats[4].base_stat * 100) / 230"
+                    ></mat-progress-bar>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Velocidad</td>
+                  <td>
+                    <mat-progress-bar
+                      mode="determinate"
+                      [value]="calculatePercent(p.stats[5].base_stat, 180)"
+                    ></mat-progress-bar>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </swiper-slide>
+  
+          <!-- If we need pagination -->
+        </swiper-container>
+      </div>
+    </section>
+  </div>
+  

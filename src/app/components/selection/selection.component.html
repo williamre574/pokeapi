@@ -1,0 +1,88 @@
+<h1 class="title">
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M17.835 3.8701L16.055 2.1001L6.16504 12.0001L16.065 21.9001L17.835 20.1301L9.70504 12.0001L17.835 3.8701Z"
+        fill="#01426A"
+      />
+    </svg>
+    <span>Ya casi terminamos!</span>
+  </h1>
+  <p class="title">Revisa la información, y completa lo solicitado.</p>
+  <div class="container">
+    <section class="profile-section">
+      <h1 class="title">
+        <span>{{ profile["name"] }}</span>
+      </h1>
+      <div class="photo-profile">
+        <img
+          [src]="profile['image'] || '../../../assets/images/icon_user.png'"
+          alt="User photo"
+        />
+      </div>
+      <div class="personal-data">
+        <table>
+          <tr>
+            <td>Pasatiempo:</td>
+            <td>{{ profile["hobbie"] }}</td>
+          </tr>
+          <tr>
+            <td>Edad:</td>
+            <td>{{ ageCalculated }}</td>
+          </tr>
+          <tr *ngIf="profile['document'] != ''">
+            <td>{{ ageCalculated! < 18 ? "Carnet de minoridad" : "DUI" }}</td>
+            <td>{{ profile["document"] }}</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+    <section class="pokemons-section">
+      <p class="title-pokemons">Pokémon</p>
+      <p class="title">Selecciona 3 Pokémon para que sean parte de tu equipo</p>
+  
+      <input
+        type="text"
+        name=""
+        id=""
+        placeholder="Buscar por índice, nombre..."
+      />
+  
+      <cdk-virtual-scroll-viewport itemSize="40" class="viewport">
+        <div class="grid-container">
+          <div class="item-pokemon" *cdkVirtualFor="let p of pokemons">
+            <input
+              type="checkbox"
+              [id]="'myCheckbox-' + p.id"
+              (change)="addToSelected(p)"
+              [checked]="p.checked"
+              [disabled]="disableList() && !isSelected(p)"
+            />
+            <label [for]="'myCheckbox-' + p.id">
+              <div class="item-pokemon-background"></div>
+              <img class="item-pokemon-image" [src]="p.image" />
+              <div class="item-pokemon-name">
+                <p>#{{ p.id | number : "3.0" }} {{ p.name }}</p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </cdk-virtual-scroll-viewport>
+      <button
+        mat-stroked-button
+        (click)="continue()"
+        [ngClass]="{
+          disabled: pokemons ? !disableList() : true,
+          enabled: pokemons ? disableList() : false
+        }"
+      >
+        {{ isEdit ? "Actualizar" : "Continuar" }}
+      </button>
+    </section>
+  </div>
+  

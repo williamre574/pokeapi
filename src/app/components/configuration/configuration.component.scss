@@ -1,0 +1,125 @@
+@use "../../../styles.scss" as variables;
+@use "sass:map";
+
+h1.title {
+  margin: 77px auto 9px 62px;
+
+}
+
+p.title {
+  margin-left: 90px;
+}
+
+.container {
+  width: 70%;
+  max-width: 980px;
+  margin: 54px auto auto auto;
+  display: grid;
+  grid-template-areas: "photo form";
+
+  .photo-section {
+    grid-area: photo;
+    width: 392px;
+    background-color: map.get(variables.$main-theme, "yellow");
+    border-radius: 50px;
+
+    p.photo-title {
+      color: map.get(variables.$main-theme, "black");
+      text-align: center;
+      font-size: 30px;
+      margin-top: 56px;
+    }
+
+    .photo-profile {
+      margin: 35px auto auto auto;
+      width: 269px;
+      height: 269px;
+      border-radius: 100%;
+      border: 16px solid #fff;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    img.btn_add_photo {
+      display: block;
+      cursor: pointer;
+      width: 334px;
+      margin: 51px auto 74px auto;
+    }
+  }
+
+  .form-section {
+    grid-area: form;
+    width: 341px;
+    margin-left: auto;
+
+    .title-form {
+      font-size: 30px;
+      font-weight: 400;
+      color: map.get(variables.$main-theme, "blue");
+    }
+
+    .paragraph {
+      font-size: 18px;
+      font-weight: 400;
+      color: map.get(variables.$main-theme, "gray");
+    }
+
+    form {
+      margin-top: 31px;
+
+      mat-form-field {
+        width: 334px;
+
+        button.mat-focus-indicator:nth-child(1) > span:nth-child(1) {
+          color: #01426a;
+        }
+      }
+
+      button {
+        display: block;
+        width: 222px;
+        height: 50px;
+        margin: 30px auto auto auto;
+        text-align: center;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        border-radius: 10px;
+        border: none;
+      }
+
+      .disabled {
+        background-color: #e6e6e6;
+        color: #868686;
+        transition: all 0.5s ease;
+      }
+
+      .enabled {
+        background-color: #01426a;
+        color: #fff;
+        transition: all 0.5s ease;
+      }
+    }
+  }
+}
+
+::ng-deep .mat-autocomplete-panel {
+  border-radius: 10px !important;
+  margin-top: 6px;
+}
+
+.mat-option {
+  color: map.get(variables.$main-theme, "blue");
+}
+
+.mat-option:hover {
+  background-color: #e7eff5;
+}
+
+::ng-deep .mat-datepicker-toggle-default-icon {
+  color: #01426a !important;
+}

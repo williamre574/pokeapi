@@ -1,0 +1,84 @@
+/* You can add global styles to this file, and also import other style files */
+@use "sass:map";
+@font-face {
+  font-family: "Poppins";
+  src: url("../src/assets/fonts/Poppins/Poppins-Regular.ttf");
+}
+
+* {
+  font-family: "Poppins";
+  margin: 0;
+  padding: 0;
+}
+
+$main-theme: (
+  "blue": #185a7d,
+  "yellow": #ffc600,
+  "gray": #868686,
+  "black": #000,
+  "black-neutro": #454545,
+  "blue-input-hover": #01426a,
+);
+
+mat-form-field mat-label {
+  color: map.get($main-theme, "black-neutro");
+}
+
+.mat-form-field-outline-thick {
+  color: map.get($main-theme, "gray");
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick,
+.mat-form-field-should-float .mat-form-field-outline-thick {
+  color: map.get($main-theme, "blue-input-hover") !important;
+}
+
+.mat-form-field-should-float .mat-form-field-outline-thick {
+  color: map.get($main-theme, "blue-input-hover") !important;
+  opacity: 1 !important;
+}
+
+.mat-form-field-should-float .mat-form-field-label-wrapper {
+  margin-left: 20px;
+}
+
+mat-form-field.mat-form-field.mat-focused mat-label,
+mat-form-field.mat-form-field.mat-form-field-should-float mat-label {
+  color: map.get($main-theme, "blue-input-hover") !important;
+  font-weight: 700;
+}
+
+.mat-form-field-invalid .mat-form-field-placeholder {
+  color: red !important;
+}
+.mat-form-field-invalid .mat-form-field-ripple {
+  background-color: red !important;
+}
+
+.mat-form-field-outline-start {
+  border-radius: 10px 0 0 10px !important;
+  min-width: 28px !important;
+}
+
+.mat-form-field-outline-end {
+  border-radius: 0 10px 10px 0 !important;
+  min-width: 28px !important;
+}
+
+h1.title {
+  font-size: 35px !important;
+  color: map.get($main-theme, "blue");
+  font-weight: 600;
+
+  span {
+    font-weight: 700 !important;
+  }
+}
+
+p.title {
+  color: map.get($main-theme, "gray");
+}
+
+.container {
+  margin-bottom: 20px !important;
+}
